@@ -36,9 +36,6 @@ api = Api(app)
 
 CORS(app,  resources={r"/api/*": {"origins": "*"}})
 
-
-
-
 @app.route('/')
 def home():
     return ('Hello there welcome!')
@@ -140,7 +137,12 @@ class PatientResource(Resource):
                     'treatment_plan': appointment.treatment_plan,
                     'notes': appointment.notes,
                     'diagnosis': appointment.diagnosis,
-                    'doctor_id': appointment.doctor_id
+                    'doctor_id': appointment.doctor_id,
+                    'doctor': {
+                        'id': appointment.doctor.id,
+                        'name': appointment.doctor.name,
+                        'email': appointment.doctor.email,
+                    }
                 } for appointment in patient.appointments]
             }
         patients = Patient.query.all()
@@ -194,6 +196,11 @@ class AppointmentResource(Resource):
                 'notes': appointment.notes,
                 'diagnosis': appointment.diagnosis,
                 'patient_id': appointment.patient_id,
+                'patient': {
+                    'id': appointment.patient.id,
+                    'name': appointment.patient.name,
+                    'age': appointment.patient.age
+                },
                 'doctor_id': appointment.doctor_id,
                 'doctor': {
                     'id': appointment.doctor.id,

@@ -1,7 +1,870 @@
-:root {
-  --bg: #282c34;
-  --header: #fff;
-  --link: #61dafb;
-  --text: hsla(0, 0%, 100%, 0.88);
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", serif;
 }
 
+body {
+  background-color: #f7f9fc;
+}
+
+:root {
+  --mainColor: #023e8a;
+  --secondaryColor: #90e0ef;
+  --text: #12498b;
+  --textColor: white;
+}
+
+/*-----------------------------------------------------NAV BAR AND HEADER----------------------------------------*/
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0 2rem;
+  background-color: var(--mainColor);
+  color: var(--textColor);
+}
+
+#nav-header {
+  font-family: "Nunito", serif;
+}
+
+nav a {
+  margin: 0 2rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+nav a:hover {
+  color: var(--secondaryColor);
+  text-decoration: underline;
+}
+
+header .nav-btn {
+  padding: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  font-size: 1.5rem;
+}
+
+/* MEDIA QUERIES ONLY */
+@media only screen and (max-width: 1024px) {
+  header .nav-btn {
+    color: var(--textColor);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  header nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: var(--mainColor);
+    transition: 0.5ms;
+    transform: translateY(-100vh);
+  }
+
+  header .responsive_nav {
+    transform: none;
+  }
+
+  nav .nav-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  nav a {
+    font-size: 1.5rem;
+  }
+
+  .profile-pic {
+    display: none;
+  }
+
+  .image img {
+    width: 300px;
+    height: 200px;
+  }
+}
+
+/*-------------------------------------------------------HOME  PAGE----------------------------------------------------*/
+#home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  height: 100vh;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  color: var(--text);
+}
+
+.text {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.text h1 {
+  color: #032f69;
+}
+
+p {
+  font-size: 18px;
+}
+
+em {
+  color: #04174a;
+}
+
+.image {
+  flex: 1.5;
+}
+
+.image img {
+  border-radius: 5px;
+  width: 90%;
+  max-width: 900px;
+  height: 80vh;
+}
+
+/* --------------------------------------------PATIENT CARDS--------------------------------------------------- */
+h2#info {
+  font-size: 40px;
+  text-align: center;
+  color: #0845a1;
+}
+
+/* -------------------cards----------- */
+.patient-info {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.patient-card {
+  background-color: #ffffff;
+  border: 1px solid #d3e0f0;
+  border-radius: 8px;
+  width: 250px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.patient-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #032f69;
+}
+
+p#diagnosis {
+  color: #db1690;
+  font-size: 15px;
+}
+
+.card-body {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #2a4e76;
+}
+
+.view-details-link {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 600;
+}
+
+.view-details-link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+.search-box {
+  margin-bottom: 20px;
+  margin-left: 200px;
+}
+
+.search-box input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #a3c4d7;
+  width: 100%;
+  max-width: 600px;
+}
+
+
+.search-box input:focus {
+  border-color: #a3c4d7;
+  outline: none;
+}
+
+/* -------------------------APPOINTMENT STYLING ------------------------------- */
+.appointments-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.appointments-grid {
+  display: flex;
+  flex-direction: column;
+  /* Stacks appointments vertically */
+  gap: 15px;
+  padding: 10px;
+}
+
+.appointment-card {
+  display: flex;
+  justify-content: space-between;
+  /* Aligns content within each card */
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  /* Ensures each card takes up full width */
+  min-height: 100px;
+  /* Optional: Adjust the minimum height for consistency */
+  max-width: 900px;
+}
+
+.appointment-card:hover {
+  transform: scale(1.02);
+}
+
+.view-details {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.view-details:hover {
+  background-color: #0056b3;
+}
+
+
+/* -----------------Appointment Details Styles-----------------*/
+.details-container {
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.details-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.details-card p {
+  margin: 10px 0;
+}
+
+/* ----------------------Appoitment Form Styling------------------- */
+.form-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Input and Textarea Fields */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border 0.3s ease-in-out;
+}
+
+input:focus,
+textarea:focus {
+  border: 1px solid #007bff;
+  outline: none;
+}
+
+/* Error Messages */
+.error {
+  color: #d9534f;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Submit Button */
+.submit-btn {
+  background: #007bff;
+  color: white;
+  padding: 12px;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.submit-btn:hover {
+  background: #0056b3;
+}
+
+/* -------------------Edit Appointment Styling -----------------*/
+.edit-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading style */
+.edit-container h2 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Styling for form elements */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Label styling */
+label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+/* Input and textarea styling */
+input[type="text"],
+textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Focus effect on inputs */
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Styling for textarea */
+textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+/* Submit button styling */
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: center;
+}
+
+/* Hover effect for submit button */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Error and validation messages */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+
+/* ----------------------------------DOCTOR STYLING ---------------- */
+.doctors-list-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.doctors-list-container h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.doctors-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+button .doc-del {
+  color: #b50718;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.doctor-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: 48%;
+  box-sizing: border-box;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-card h3 {
+  font-size: 22px;
+  color: #333;
+}
+
+.doctor-card p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* .doctor-card a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+.doctor-card a:hover {
+  color: #0056b3;
+} */
+
+.link-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.view-appointments, .edit-button {
+  color: #007bff;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-flex;
+  transition: background-color 0.3s ease;
+}
+
+.view-appointments:hover, .edit-button:hover {
+  color: #0056b3;
+  /* Darker shade for hover effect */
+}
+
+
+/* -----------------Doctor Styling Appointments-------------*/
+.doctor-appointments-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-appointments-container h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.appointment-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 15px 0;
+  width: 100%;
+  max-width: 900px;
+  /* Control the width */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Align the details on the left */
+}
+
+.appointment-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.appointment-card p {
+  color: #555;
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.appointment-card p strong {
+  font-weight: bold;
+}
+
+.appointment-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* -----------------Doctor Form--------------------------------*/
+.container {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+/* --------------------Styling for Edit Doctor---------- */
+.edit-doctor-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-doctor-container h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.edit-doctor-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.edit-doctor-container label {
+  font-size: 16px;
+  color: #555;
+}
+
+.edit-doctor-container input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.edit-doctor-container button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.edit-doctor-container button:hover {
+  background-color: #0056b3;
+}
+
+/*-----------------------------------SIDEBAR STYLING-------------------------------------- */
+.sidebar {
+  margin-top: 80px;
+  width: 250px;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.427);
+  padding-top: 40px;
+  position: fixed;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+  text-align: center;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+  background-color: #575757;
+}
+  
+
+/* ---------------------------------------------FOOTER STYLING-------------------------------------------------*/
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-container>.routes {
+  flex: 1;
+}
+
+.footer {
+  background-color: var(--mainColor);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: sticky;
+  bottom: 0;
+  height: 80px;
+  width: 100%;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: #f1f8ff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 15px;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    display: block;
+    margin-top: 15px;
+  }
+
+  .footer-link {
+    margin: 5px 0;
+  }
+}
+
+
+/* Navbar styles */
+.navbar {
+  background-color: #333;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand a {
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.dropbtn:hover {
+  background-color: #555;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  z-index: 1;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #555;
+}
