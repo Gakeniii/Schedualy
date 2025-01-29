@@ -15,7 +15,6 @@ const EditAppointment = () => {
   });
 
   useEffect(() => {
-    // Fetch the appointment details when component mounts
     fetch(`/appointments/${id}`)
       .then((res) => res.json())
       .then((data) => setAppointment(data))
@@ -42,7 +41,6 @@ const EditAppointment = () => {
       diagnosis: appointment.diagnosis,
     };
 
-    // Send PATCH request to update the appointment details
     fetch(`/appointments/${id}`, {
       method: "PATCH",
       headers: {
@@ -53,7 +51,6 @@ const EditAppointment = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "Appointment updated") {
-          // Navigate to the details page after update
           navigate(`/appointments/${id}`);
         }
       })
@@ -61,9 +58,9 @@ const EditAppointment = () => {
   };
 
   return (
-    <div className="edit-container">
-      <h2>Edit Appointment</h2>
-      <form onSubmit={handleSubmit}>
+    <div id="edit-container-appt">
+      <h2 id="edit-appt-h2">Edit Appointment</h2>
+      <form className="edit-appt-form" onSubmit={handleSubmit}>
         <div>
           <label>Date:</label>
           <input
@@ -115,7 +112,7 @@ const EditAppointment = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Save Changes</button>
+        <button id="btn-appt-submit" type="submit">Save Changes</button>
       </form>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Search from './Search';
+import SearchPatient from './SearchPatient';
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
@@ -9,7 +9,11 @@ const PatientList = () => {
   useEffect(() => {
     fetch('/patients')  // Change URL to your Flask API endpoint
       .then(response => response.json())
-      .then(data => setPatients(data));
+      .then(data => {
+        setPatients(data);
+        console.log(data)
+
+      });
   }, []);
 
   const searchPatients = search
@@ -22,7 +26,7 @@ const PatientList = () => {
     <>
       <div id="patient-info">
         <h2 id="info">Patients</h2>
-        <Search handleSearch={setSearch} />
+        <SearchPatient handleSearch={setSearch} />
         <div className="card-container">
           {searchPatients.length > 0 ? (
             searchPatients.map(patient => (
@@ -31,8 +35,18 @@ const PatientList = () => {
                   <h3>{patient.name}</h3>
                 </div>
                 <div className="card-body">
-                  <p>{patient.diagnosis}</p><br/>
-                  <p id="diagnosis">Next appt: {patient.date}</p>
+                  <ul className='patient-card-details'>
+                    {patient.appointments && patient.appointments.length > 0 ? (
+                      patient.appointments.map((appointment, index) => (
+                        <li key={index} className='pat-card-details'>
+                          <p id="next-app"><strong id="nxt">Next Appt:</strong> {appointment.date}</p>
+                        </li>
+                      ))
+                    ) : (
+                      <p>No appointments available</p>
+                    )}
+                  </ul>
+
                   <Link to={`/patients/${patient.id}`} className="view-details-link">
                     View Details
                   </Link>

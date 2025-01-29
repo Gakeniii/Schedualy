@@ -6,15 +6,14 @@ import { useNavigate } from 'react-router-dom';
 const DoctorForm = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [specialties, setSpecialties] = useState([]);
 
   useEffect(() => {
     const fetchSpecialties = async () => {
       try {
         const response = await fetch('/specialties');
         const data = await response.json();
-        setSpecialties(data);
-        console.log('Fetched specialties:', data);
+        // setSpecialties(data);
+        // console.log('Fetched specialties:', data);
       } catch (error) {
         console.error('Error fetching specialties:', error);
       }
@@ -40,6 +39,7 @@ const DoctorForm = () => {
       specialty_id: Yup.string().required('Specialty is required')
     }),
     onSubmit: async (values) => {
+      console.log("doctors:", values);
       setIsSubmitting(true);
 
       // Assuming you have an API to create a doctor
@@ -69,11 +69,11 @@ const DoctorForm = () => {
   });
 
   return (
-    <div>
-      <h2>Create Doctor</h2>
-      <form onSubmit={formik.handleSubmit}>
+    <div id='doc-form'>
+      <h2 id='doc-form-h2'>Add Doctor</h2>
+      <form className='add-doc-form' onSubmit={formik.handleSubmit}>
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Name:</label>
           <input
             id="name"
             name="name"
@@ -88,7 +88,7 @@ const DoctorForm = () => {
         </div>
 
         <div>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email:</label>
           <input
             id="email"
             name="email"
@@ -103,7 +103,7 @@ const DoctorForm = () => {
         </div>
 
         <div>
-          <label htmlFor="age">Age</label>
+          <label htmlFor="age">Age:</label>
           <input
             id="age"
             name="age"
@@ -118,7 +118,7 @@ const DoctorForm = () => {
         </div>
 
         <div>
-          <label htmlFor="phone_no">Phone Number</label>
+          <label htmlFor="phone_no">Phone Number:</label>
           <input
             id="phone_no"
             name="phone_no"
@@ -131,35 +131,23 @@ const DoctorForm = () => {
             <div>{formik.errors.phone_no}</div>
           ) : null}
         </div>
-
-        {/* <div className='specialty'>
-          <label htmlFor="specialty_id">Specialty</label>
-          <select 
-            className="doc-sel-specs"
+        <div>
+          <label htmlFor="specialty_id">Specialty:</label>
+          <input
             id="specialty_id"
             name="specialty_id"
+            type="text"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.specialty_id || ''}
-            disabled={specialties.length === 0}
-          >
-            <option className="doc-specialty" value="">Select Specialty</option>
-            {specialties.length === 0 ? (
-              <option value="" disabled>No specialties available</option>
-            ) : (
-              specialties.map((specialty) => (
-                <option key={specialty.id} value={specialty.id}>
-                  {specialty.name}
-                </option>
-              ))
-            )}
-          </select>
-          {formik.touched.specialty_id && formik.errors.specialty_id && (
+            value={formik.values.specialty_id}
+          />
+          {formik.touched.specialty_id && formik.errors.specialty_id ? (
             <div>{formik.errors.specialty_id}</div>
-          )}
-        </div> */}
+          ) : null}
+        </div>
 
-        <button className='btn-form' type="submit" disabled={isSubmitting}>
+
+        <button id='add-doc-form' type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Submit'}
         </button>
       </form>

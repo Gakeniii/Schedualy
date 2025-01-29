@@ -33,7 +33,8 @@ const PatientForm = () => {
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-      <Form>
+      <Form id="patient-form">
+        <h3 id="pat-form-hd">Add Patient</h3>
         <label>Name:</label>
         <Field type="text" name="name" />
         <ErrorMessage name="name" component="div" className="error" />
@@ -46,7 +47,7 @@ const PatientForm = () => {
         <Field type="number" name="age" />
         <ErrorMessage name="age" component="div" className="error" />
 
-        <button type="submit">Create Patient</button>
+        <button id="patient-form-btn" type="submit">Create Patient</button>
       </Form>
     </Formik>
   );

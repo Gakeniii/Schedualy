@@ -23,20 +23,19 @@ const AppointmentDetails = () => {
   }
 
   return (
-    <div className="details-container">
-      <h2>Appointment Details</h2>
-      <div className="details-card">
-        <h2>{appointment.patient.name} {appointment.patient.age} y/o</h2>
+    <div id="details-container">
+      <h2 id="appt-details-heading">Appointment Details</h2>
+      <div id="details-card">
+        <h2 id="appt-detail">{appointment.patient.name} {appointment.patient.age} y/o</h2>
         <p><strong>Date:</strong> {appointment.date}</p>
         <p><strong>Time:</strong> {appointment.time}</p>
         <p><strong>Doctor:</strong> {appointment.doctor.name} ({appointment.doctor.email})</p>
-        {/* <p><strong>Patient:</strong> {appointment.patient.name} ({appointment.patient.age})</p> */}
         <p><strong>Diagnosis:</strong> {appointment.diagnosis || "N/A"}</p>
         <p><strong>Treatment Plan:</strong> {appointment.treatment_plan || "N/A"}</p>
         <p><strong>Notes:</strong> {appointment.notes || "N/A"}</p>
         <p><strong>Status:</strong> {appointment.status}</p>
         {appointment.status === "Scheduled" && (
-          <button onClick={handleEditClick}>Edit Appointment</button>
+          <button id="btn-appt-details" onClick={handleEditClick}>Edit Appointment</button>
         )}
       </div>
     </div>

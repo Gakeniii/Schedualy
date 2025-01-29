@@ -19,7 +19,7 @@ const DoctorAppointments = () => {
 
   return (
     <div className="doctor-appointments-container">
-      <h2>{doctor.name}'s Appointments</h2>
+      <h2 id="doc-dets-h2">{doctor.name}'s Appointments</h2>
       {doctor.appointments.length === 0 ? (
         <p>No appointments available.</p>
       ) : (

@@ -1,102 +1,93 @@
-import { Link } from 'react-router-dom';
-import { FaBars,FaTimes } from 'react-icons/fa';
+import { Link, useLocation } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import { useRef } from 'react';
 
-
-function Navbar(){
+function Navbar() {
+  const location = useLocation();
   const navRef = useRef();
 
   const showNavBar = () => {
-    navRef.current.classList.toggle("responsive_nav");
-  }
+    navRef.current.classList.toggle('responsive_nav');
+  };
 
-  return  (
+  return (
     <>
       <header id="navbar">
-          <h1 id="nav-header">Schedualy</h1>
-          <nav ref={navRef}>
-            {/* <Link to="/"> Home </Link>
-            <Link to="/patients"> Patients</Link>
-            <Link to="/appointments">Appointments</Link>
-            <Link to="/doctors">Doctors</Link>
-            <Link to="/payment-options">Payment</Link> */}
-
-        
-            <div className="navbar-links">
-                <div className="dropdown">
-                  <button className="dropbtn">Patients</button>
-                  <div className="dropdown-content">
-                    <Link to="/patients/form">Create Patient</Link>
-                    <Link to="/patients">Patient List</Link>
-
-                  </div>
-                </div>
-                <div className="dropdown">
-                  <button className="dropbtn">Appointments</button>
-                  <div className="dropdown-content">
-                    <Link to="/appointments/form">Create Appointment</Link>
-                    <Link to="/appointments">Appointment List</Link>
-                  </div>
-                </div>
-                <div className="dropdown">
-                  <button className="dropbtn">Doctors</button>
-                  <div className="dropdown-content">
-                    <Link to="/doctors/form">Create Doctor</Link>
-                    <Link to="/doctors">Doctor List</Link>
-                </div>
+        <h1 id="nav-header">Schedualy</h1>
+        <nav ref={navRef}>
+          <div id="navbar-links">
+            <div className="dropdown">
+              <button className="dropbtn">Patients</button>
+              <div className="dropdown-content">
+                <Link to="/patients/form" className={location.pathname === '/patients/form' ? 'active' : ''}>
+                  Add Patient
+                </Link>
+                <Link to="/patients" className={location.pathname === '/patients' ? 'active' : ''}>
+                  Patient List
+                </Link>
               </div>
             </div>
-            
-            <button className='nav-btn nav-close-btn' onClick={showNavBar}>
-              <FaTimes />
-            </button>
-          </nav>
-          <button className="nav-btn" onClick={showNavBar}>
-            <FaBars />
-          </button>
-      </header>
 
-      {/* <div className="profile">
-        <button className="p-name">Dr. Gakeni</button>
-        <img src="" alt="Profile Image" className="profile-pic" />
-      </div> */}
+            <div className="dropdown">
+              <button className="dropbtn">Appointments</button>
+              <div className="dropdown-content">
+                <Link to="/appointments/form" className={location.pathname === '/appointments/form' ? 'active' : ''}>
+                  Schedule Appointment
+                </Link>
+                <Link to="/appointments" className={location.pathname === '/appointments' ? 'active' : ''}>
+                  Appointment List
+                </Link>
+              </div>
+            </div>
+
+            <div className="dropdown">
+              <button className="dropbtn">Doctors</button>
+              <div className="dropdown-content">
+                <Link to="/doctors/form" className={location.pathname === '/doctors/form' ? 'active' : ''}>
+                  Add Doctor
+                </Link>
+                <Link to="/doctors" className={location.pathname === '/doctors' ? 'active' : ''}>
+                  Doctor List
+                </Link>
+              </div>
+            </div>
+
+            <div className="dropdown">
+              <button className="dropbtn">Specialties</button>
+              <div className="dropdown-content">
+                <Link to="/specialties/form" className={location.pathname === '/specialties/form' ? 'active' : ''}>
+                  Add Specialty
+                </Link>
+                <Link to="/specialties" className={location.pathname === '/specialties' ? 'active' : ''}>
+                  Specialties
+                </Link>
+              </div>
+            </div>
+
+            <div className="dropdown">
+              <button className="dropbtn">Payments</button>
+              <div className="dropdown-content">
+                <Link to="/payment-options/form" className={location.pathname === '/payment-options/form' ? 'active' : ''}>
+                  Add Payment
+                </Link>
+                <Link to="/payment-options" className={location.pathname === '/payment-options' ? 'active' : ''}>
+                  Payments 
+                </Link>
+              </div>
+            </div>
+
+          </div>
+
+          <button className="nav-btn nav-close-btn" onClick={showNavBar}>
+            <FaTimes />
+          </button>
+        </nav>
+        <button className="nav-btn" onClick={showNavBar}>
+          <FaBars />
+        </button>
+      </header>
     </>
-  )
-};
+  );
+}
 
 export default Navbar;
-
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-
-// const NavigationBar = () => {
-//   return (
-//     <div className="navbar">
-//       <div className="navbar-brand">
-//         <Link to="/">AppName</Link>
-//       </div>
-//       <div className="navbar-links">
-//         <div className="dropdown">
-//           <button className="dropbtn">Doctors</button>
-//           <div className="dropdown-content">
-//             <Link to="/doctor-form">Create Doctor</Link>
-//             <Link to="/doctors">Doctor List</Link>
-//           </div>
-//         </div>
-        
-//         <div className="dropdown">
-//           <button className="dropbtn">Appointments</button>
-//           <div className="dropdown-content">
-//             <Link to="/appointment-form">Create Appointment</Link>
-//             <Link to="/appointments">Appointment List</Link>
-//           </div>
-//         </div>
-
-//         {/* Add other dropdowns or links for different routes */}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default NavigationBar;
-

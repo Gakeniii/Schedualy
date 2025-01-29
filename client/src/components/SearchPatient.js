@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Search({ handleSearch }) {
+function SearchPatient({ handleSearch }) {
   const [searchPat, setSearchPat] = useState('');
 
   function handleChange(e){
@@ -8,7 +8,7 @@ function Search({ handleSearch }) {
         handleSearch(e.target.value);
   }
   return (
-    <div className="search-box">
+    <div className="search-box-patient">
       <input
         type="text"
         id="search"
@@ -20,4 +20,4 @@ function Search({ handleSearch }) {
   );
 }
 
-export default Search;
+export default SearchPatient;

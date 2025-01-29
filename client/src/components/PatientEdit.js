@@ -39,8 +39,8 @@ const PatientEdit = () => {
 
   return (
     <div className="patient-edit-container">
-      <h1>Edit Patient Information</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 id='edit-ppt-hd'>Edit Patient Information</h1>
+      <form id='edit-ppt' onSubmit={handleSubmit}>
         <label>Name:
           <input 
             type="text" 
@@ -68,7 +68,7 @@ const PatientEdit = () => {
           />
         </label>
         <br />
-        <button type="submit">Update Patient</button>
+        <button id="edit-ppt-btn" type="submit">Update Patient</button>
       </form>
     </div>
   );

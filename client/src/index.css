@@ -19,91 +19,98 @@ body {
 }
 
 /*-----------------------------------------------------NAV BAR AND HEADER----------------------------------------*/
-header {
+#navbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  height: 80px;
-  padding: 0 2rem;
-  background-color: var(--mainColor);
-  color: var(--textColor);
+  align-items: center;
+  background-color:#032f69;
+  padding: 1rem;
+  color: white;
 }
 
 #nav-header {
-  font-family: "Nunito", serif;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-nav a {
-  margin: 0 2rem;
+#navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+#navbar-links .dropdown {
+  position: relative;
+  margin-right: 3rem;
+}
+
+#navbar-links .dropbtn {
+  background-color:transparent;
   color: white;
-  text-decoration: none;
-  font-size: 1.1em;
-}
-
-nav a:hover {
-  color: var(--secondaryColor);
-  text-decoration: underline;
-}
-
-header .nav-btn {
-  padding: 5px;
-  cursor: pointer;
-  background: transparent;
   border: none;
-  outline: none;
-  color: #fff;
-  visibility: hidden;
-  opacity: 0;
-  font-size: 1.5rem;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 
-/* MEDIA QUERIES ONLY */
-@media only screen and (max-width: 1024px) {
-  header .nav-btn {
-    color: var(--textColor);
-    visibility: visible;
-    opacity: 1;
-  }
+#navbar-links .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:#f7f9fc;
+  min-width: 160px;
+  border-radius: 8px;
+}
 
-  header nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    background-color: var(--mainColor);
-    transition: 0.5ms;
-    transform: translateY(-100vh);
-  }
+#navbar-links .dropdown-content a {
+  font-size: 13px;
+  color:#04174a;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
 
-  header .responsive_nav {
-    transform: none;
-  }
+#navbar-links .dropdown:hover .dropdown-content {
+  display: block;
+  border-radius: 8px;
+}
 
-  nav .nav-close-btn {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-  }
+#navbar-links a.active {
+  background-color:#555555c0;
+  border-radius: 8px;
+}
 
-  nav a {
-    font-size: 1.5rem;
-  }
+.nav-btn {
+  display: none;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 2rem;
+}
 
-  .profile-pic {
+.nav-close-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #navbar-links {
     display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .image img {
-    width: 300px;
-    height: 200px;
+  .responsive_nav {
+    display: flex;
+  }
+
+  .nav-btn {
+    display: block;
+  }
+
+  .nav-close-btn {
+    display: block;
   }
 }
+
 
 /*-------------------------------------------------------HOME  PAGE----------------------------------------------------*/
 #home {
@@ -173,7 +180,7 @@ h2#info {
   background-color: #ffffff;
   border: 1px solid #d3e0f0;
   border-radius: 8px;
-  width: 250px;
+  width: 300px;
   padding: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -201,6 +208,19 @@ p#diagnosis {
   color: #2a4e76;
 }
 
+.pat-card-details{
+  margin-left: 20px;
+}
+
+p#next-app{
+  font-size: 15px;
+}
+
+#nxt{
+  color: rgb(158, 4, 132);
+}
+
+/*---------------Patient details------------*/
 .view-details-link {
   display: inline-block;
   margin-top: 10px;
@@ -214,12 +234,12 @@ p#diagnosis {
   color: #0056b3;
 }
 
-.search-box {
+.search-box-patient {
   margin-bottom: 20px;
   margin-left: 200px;
 }
 
-.search-box input {
+.search-box-patient input {
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #a3c4d7;
@@ -227,77 +247,344 @@ p#diagnosis {
   max-width: 600px;
 }
 
-
-.search-box input:focus {
+.search-box-patient input:focus {
   border-color: #a3c4d7;
   outline: none;
 }
 
-/* -------------------------APPOINTMENT STYLING ------------------------------- */
-.appointments-container {
-  max-width: 1000px;
-  margin: 20px auto;
-  text-align: center;
+/*-------------------Patient Detail styling -------------------*/
+div#patient-detail-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.appointments-grid {
+main#patient-detail-main {
   display: flex;
   flex-direction: column;
-  /* Stacks appointments vertically */
-  gap: 15px;
-  padding: 10px;
+  gap: 20px;
 }
 
-.appointment-card {
+h1#patient-detail-heading {
+  text-align: start;
+  font-size: 30px;
+  font-weight: bold;
+  color:#0845a1;
+}
+
+h2#patient-name {
+  text-align: center;
+  font-size: 28px;
+  color:rgb(65, 5, 121);
+}
+
+ul#appointment-patient-1,
+ul#appointments-patient-2 {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li#appointment-patient-details,
+li#appointment-item {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+li#appointment-patient-details p,
+li#appointment-item p {
+  margin: 5px 0;
+  color: #555;
+}
+
+li#appointment-patient-details strong,
+li#appointment-item strong {
+  font-weight: bold;
+}
+
+h3#appointment-heading {
+  font-size: 24px;
+  color:#023e8a;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+div#btn-details-container{
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  border: none;
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button#edit-btn-ppt-details {
+  background-color:#007bff;
+  color: white;
+  border: none;
+
+}
+
+button#delete-btn-ppt-details {
+  background-color: #b80517;
+  color: white;
+  border: none;
+}
+
+button#edit-btn-ppt-details:hover {
+  background-color:#023e8a;
+  transition: background-color 0.3s ease;
+}
+
+button#delete-btn-ppt-details:hover {
+  background-color: #800e1a;
+  transition: background-color 0.3s ease;
+}
+
+button#delete-btn-ppt-details:focus,
+button#edit-btn-ppt-details:focus {
+  outline: none;
+}
+
+/* -------------patient form------------ */
+#patient-form {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#pat-form-hd{
+  text-align: center;
+  font-size: 32px;
+  color:#0845a1;
+  
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button#patient-form-btn {
+  background-color:#007bff;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+}
+
+button#patient-form-btn:hover {
+  background-color:#0056b3;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  #patient-form {
+    width: 90%;
+  }
+}
+
+/*-------- patient edit--------- */
+.patient-edit-container {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+h1#edit-ppt-hd{
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color:#0845a1;
+}
+
+form#edit-ppt{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button#edit-ppt-btn{
+  padding: 12px;
+  background-color:#007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button#edit-ppt-btn:hover {
+  background-color:#0056b3;
+}
+
+@media (max-width: 768px) {
+  .patient-edit-container {
+    width: 90%;
+  }
+
+  h1#edit-ppt-hd {
+    font-size: 20px;
+  }
+}
+
+/* -----------------------------------------------APPOINTMENT STYLING -------------------------------------- */
+div#appt-list-container {
+  max-width: 900px;
+  width: 90%;
+  margin: 40px auto;
+  text-align: center;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2#appt-list-h2{
+  color:#0845a1;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+div#appt-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+div#appt-list-card {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  text-align: left;
+}
+
+div#appt-list-card:hover {
+  transform: scale(1.03);
+}
+
+div#appt-list-card p {
+  font-size: 16px;
+  color: #555;
+  margin: 8px 0;
+}
+
+div#appointment-list-actions {
+  gap: 10px;
   display: flex;
   justify-content: space-between;
-  /* Aligns content within each card */
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-  width: 100%;
-  /* Ensures each card takes up full width */
-  min-height: 100px;
-  /* Optional: Adjust the minimum height for consistency */
-  max-width: 900px;
+  margin-top: 15px;
 }
 
-.appointment-card:hover {
-  transform: scale(1.02);
-}
-
-.view-details {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: #fff;
+#view-list-details {
   text-decoration: none;
+  background: #007bff;
+  color: white;
+  height: 38px;
+  width: 27%;
+  padding: 8px 12px;
   border-radius: 5px;
+  font-size: 14px;
   transition: background 0.3s;
 }
 
-.view-details:hover {
-  background-color: #0056b3;
+#view-list-details:hover {
+  background: #0056b3;
+}
+
+button#list-del-btn {
+  background: #ad0101;
+  color: white;
+  width: 20%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button#list-del-btn:hover {
+  background: #cc0000;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  div#appt-list-grid {
+    grid-template-columns: 1fr;
+  }
+
+  div#appt-list-container {
+    padding: 15px;
+  }
 }
 
 
 /* -----------------Appointment Details Styles-----------------*/
-.details-container {
-  max-width: 600px;
+div#details-container {
+  max-width: 800px;
   margin: 20px auto;
   text-align: center;
 }
 
-.details-card {
+h2#appt-detail{
+  color: indigo;
+  font-size: 30px;
+}
+
+h2#appt-details-heading{
+  color: #333;
+  font-size: 40px;
+}
+div#details-card {
   background: #ffffff;
   padding: 20px;
   border-radius: 10px;
@@ -305,164 +592,218 @@ h2 {
   text-align: left;
 }
 
-.details-card p {
+div#details-card p {
   margin: 10px 0;
+  color:#212121;
 }
 
-/* ----------------------Appoitment Form Styling------------------- */
-.form-container {
-  max-width: 600px;
-  margin: 30px auto;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+button#btn-appt-details{
+  border: none;
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 30%;
   text-align: center;
 }
 
-h2 {
-  color: #333;
+div#btn-appt-details{
+  background-color: #0056b3;
+}
+
+/* ----------------------Appoitment Form Styling------------------- */
+Form#appt-form-js{
+  width: 90%;
+  margin: 30px auto;
+  padding: 30px;
+  border-radius: 8px;
+  background: #f4f4f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3#appt-form-hd{
+  text-align: center;
+  font-size: 32px;
   margin-bottom: 20px;
-}
-
-/* Form Styling */
-.appointment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Input and Textarea Fields */
-.form-group {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+color:#023e8a;
 }
 
 label {
+  font-size: 18px;
   font-weight: bold;
+  color: #333;
+  display: block;
   margin-bottom: 5px;
 }
 
 input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background-color: #fff;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+button#form-btn-submit {
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color:#007bff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button#form-btn-submit:hover {
+  background-color:#0056b3;
+}
+
+.appt-form-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+@media (max-width: 600px) {
+  .appt-form {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input,
+  select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .form-btn-submit {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .appt-form {
+    max-width: 90%;
+  }
+}
+
+/* -------------------Appointment Edit Styling -----------------*/
+div#edit-container-appt {
+  max-width: 800px;
+  width: 90%;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+h2#edit-appt-h2{
+  text-align: center;
+  color:#0845a1;
+  margin-bottom: 25px;
+  font-size: 32px;
+}
+
+form#edit-appt-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+form#edit-appt div {
+  margin-bottom: 18px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 6px;
+  display: block;
+  color: #444;
+  font-size: 18px;
+}
+
+input,
 textarea {
-  padding: 10px;
+  width: 100%;
+  padding: 12px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 6px;
+  background: #f9f9f9;
   transition: border 0.3s ease-in-out;
 }
 
 input:focus,
 textarea:focus {
   border: 1px solid #007bff;
+  background: #fff;
   outline: none;
 }
 
-/* Error Messages */
-.error {
-  color: #d9534f;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-/* Submit Button */
-.submit-btn {
-  background: #007bff;
-  color: white;
-  padding: 12px;
-  border: none;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease-in-out;
-}
-
-.submit-btn:hover {
-  background: #0056b3;
-}
-
-/* -------------------Edit Appointment Styling -----------------*/
-.edit-container {
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Heading style */
-.edit-container h2 {
-  text-align: center;
-  color: #333;
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-/* Styling for form elements */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Label styling */
-label {
-  font-size: 16px;
-  font-weight: bold;
-  color: #555;
-  margin-bottom: 5px;
-}
-
-/* Input and textarea styling */
-input[type="text"],
 textarea {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Focus effect on inputs */
-input[type="text"]:focus,
-textarea:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-/* Styling for textarea */
-textarea {
-  height: 120px;
+  height: 100px;
   resize: vertical;
 }
 
-/* Submit button styling */
-button {
-  background-color: #007bff;
-  color: #fff;
+button#btn-appt-submit {
+  background: #007bff;
+  color: white;
+  padding: 14px;
+  font-size: 18px;
   border: none;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  align-self: center;
+  transition: background 0.3s ease;
+  width: 100%;
+  text-align: center;
 }
 
-/* Hover effect for submit button */
-button:hover {
-  background-color: #0056b3;
+button#btn-appt-submit:hover {
+  background: #0056b3;
 }
 
-/* Error and validation messages */
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
+@media (max-width: 768px) {
+  div#edit-container-appt {
+    width: 95%;
+    padding: 25px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input,
+  textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  button#btn-appt-submit {
+    font-size: 16px;
+    padding: 12px;
+  }
 }
 
 
@@ -476,9 +817,10 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.doctors-list-container h2 {
+h2#doc-list-h2 {
+  color: #0845a1;
   text-align: center;
-  font-size: 28px;
+  font-size: 32px;
   margin-bottom: 20px;
 }
 
@@ -488,13 +830,6 @@ button:hover {
   gap: 20px;
   justify-content: space-between;
 }
-
-button .doc-del {
-  color: #b50718;
-  font-size: 20px;
-  cursor: pointer;
-}
-
 .doctor-card {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -515,25 +850,31 @@ button .doc-del {
   color: #555;
 }
 
-/* .doctor-card a {
-  text-decoration: none;
-  color: #007bff;
-  font-weight: bold;
-  margin-top: 10px;
-  display: block;
-}
 
-.doctor-card a:hover {
-  color: #0056b3;
-} */
-
-.link-container {
+div#link-container {
+  font-weight: 300;
+  font-size: 17px;
   display: flex;
   justify-content: flex-start;
   gap: 10px;
 }
 
-.view-appointments, .edit-button {
+button#del-doc-list {
+  background-color: transparent;
+  justify-content: end;
+  width: 10%;
+  border: none;
+  color: red;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button#del-doc-list:hover{
+  color:rgb(203, 5, 5);
+}
+
+#view-appointments, #edit-button {
   color: #007bff;
   padding: 10px;
   border-radius: 5px;
@@ -543,7 +884,7 @@ button .doc-del {
   transition: background-color 0.3s ease;
 }
 
-.view-appointments:hover, .edit-button:hover {
+#view-appointments:hover, #edit-button:hover {
   color: #0056b3;
   /* Darker shade for hover effect */
 }
@@ -559,7 +900,8 @@ button .doc-del {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.doctor-appointments-container h2 {
+h2#doc-dets-h2 {
+  color: #0845a1;
   text-align: center;
   font-size: 28px;
   margin-bottom: 20px;
@@ -601,109 +943,97 @@ button .doc-del {
 }
 
 /* -----------------Doctor Form--------------------------------*/
-.container {
-  max-width: 300px;
-  margin: 0 auto;
+#doc-form {
+  width: 80%;
+  margin: 40px auto;
   padding: 20px;
+  background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+#doc-form-h2 {
   text-align: center;
+  font-size: 37px;
+  color:#0845a1;
   margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
 }
 
-.form-group {
-  margin-bottom: 15px;
+.add-doc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 label {
-  display: block;
   font-weight: bold;
-  margin-bottom: 5px;
   color: #333;
+  font-size: 18px;
+  margin-bottom: 5px;
 }
 
 input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
 }
 
 input:focus {
-  border-color: #007bff;
   outline: none;
+  border-color:#032f69;
 }
 
-.btn-form {
-  width: 100%;
-  padding: 10px;
-  background-color: #28a745;
+div {
+  color: red;
+  font-size: 12px;
+}
+
+button#add-doc-form {
+  padding: 12px;
+  background-color:#007bff;
   color: white;
-  font-size: 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-button:disabled {
-  background-color: #ddd;
+button#add-doc-form:hover {
+  background-color:#0056b3;
+}
+
+button#add-doc-form:disabled {
+  background-color: #bbb;
   cursor: not-allowed;
 }
 
-button:hover:not(:disabled) {
-  background-color: #218838;
-}
+/* Responsive design */
+@media (max-width: 768px) {
+  #doc-form {
+    width: 90%;
+    padding: 15px;
+  }
 
-.specialty {
-  color: #000;
-  width: 100%;
-  padding: 20px;
-}
+  #doc-form-h2 {
+    font-size: 22px;
+  }
 
-select.doc-sel-specs {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow-y: auto;
-  color: #333;
-  /* You can change this to suit your design */
-  background-color: #fff;
-  /* Make sure it's visible against the background */
-}
+  input {
+    padding: 10px;
+  }
 
-select.doc-sel-specs:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-option {
-  padding: 8px;
-  background-color: #fff;
-  color: #333;
-}
-
-option:hover {
-  background-color: #f1f1f1;
-}
-
-.error {
-  color: red;
-  font-size: 14px;
-}
+  button#add-doc-form {
+    font-size: 14px;
+  }
+} */
 
 /* --------------------Styling for Edit Doctor---------- */
 .edit-doctor-container {
-  max-width: 1000px;
+  width: 70%;
   margin: 40px auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -713,8 +1043,9 @@ option:hover {
 
 .edit-doctor-container h2 {
   text-align: center;
-  font-size: 28px;
+  font-size: 30px;
   margin-bottom: 20px;
+  color: #0845a1;
 }
 
 .edit-doctor-container form {
@@ -750,34 +1081,6 @@ option:hover {
   background-color: #0056b3;
 }
 
-/*-----------------------------------SIDEBAR STYLING-------------------------------------- */
-.sidebar {
-  margin-top: 80px;
-  width: 250px;
-  height: 100%;
-  background-color: rgba(128, 128, 128, 0.427);
-  padding-top: 40px;
-  position: fixed;
-}
-
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  padding: 10px;
-  text-align: center;
-}
-
-.sidebar ul li a {
-  color: white;
-  text-decoration: none;
-}
-
-.sidebar ul li a:hover {
-  background-color: #575757;
-}
   
 
 /* ---------------------------------------------FOOTER STYLING-------------------------------------------------*/

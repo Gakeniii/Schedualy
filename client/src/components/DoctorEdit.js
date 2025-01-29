@@ -25,7 +25,7 @@ const EditDoctor = () => {
         });
       })
       .catch((error) => console.error("Error fetching doctor details:", error));
-    })
+    }, [id])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
