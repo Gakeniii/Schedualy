@@ -9,12 +9,11 @@ const EditDoctor = () => {
     name: "",
     email: "",
     age: "",
-    phone_no: "",
-    specialty_id: "",
+    phone_no: ""
   });
 
   useEffect(() => {
-    // Fetch the doctor's current details
+    
     fetch(`/doctors/${id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -23,11 +22,10 @@ const EditDoctor = () => {
           email: data.email,
           age: data.age,
           phone_no: data.phone_no,
-          specialty_id: data.specialty_id || "",
         });
       })
       .catch((error) => console.error("Error fetching doctor details:", error));
-  }, [id]);
+    })
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,10 +43,8 @@ const EditDoctor = () => {
       email: doctor.email,
       age: doctor.age,
       phone_no: doctor.phone_no,
-      specialty_id: doctor.specialty_id,
     };
 
-    // Send PATCH request to update the doctor's details
     fetch(`/doctors/${id}`, {
       method: "PATCH",
       headers: {
@@ -59,7 +55,6 @@ const EditDoctor = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "Doctor updated") {
-          // Navigate to the doctor details page after the update
           navigate(`/doctors`);
         }
       })
@@ -103,15 +98,6 @@ const EditDoctor = () => {
             type="text"
             name="phone_no"
             value={doctor.phone_no}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Specialty:</label>
-          <input
-            type="text"
-            name="specialty_id"
-            value={doctor.specialty_id}
             onChange={handleChange}
           />
         </div>

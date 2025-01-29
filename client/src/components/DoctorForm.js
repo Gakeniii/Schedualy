@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,22 @@ import { useNavigate } from 'react-router-dom';
 const DoctorForm = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [specialties, setSpecialties] = useState([]);
+
+  useEffect(() => {
+    const fetchSpecialties = async () => {
+      try {
+        const response = await fetch('/specialties');
+        const data = await response.json();
+        setSpecialties(data);
+        console.log('Fetched specialties:', data);
+      } catch (error) {
+        console.error('Error fetching specialties:', error);
+      }
+    };
+
+    fetchSpecialties();
+  }, []);
 
   // Formik setup
   const formik = useFormik({
@@ -40,7 +56,7 @@ const DoctorForm = () => {
 
         if (response.ok) {
           alert('Doctor created successfully');
-          navigate('/doctors'); // Redirect to doctor list after successful submission
+          navigate('/doctors'); 
         } else {
           console.error('Error creating doctor:', result.message);
         }
@@ -116,22 +132,34 @@ const DoctorForm = () => {
           ) : null}
         </div>
 
-        <div>
+        {/* <div className='specialty'>
           <label htmlFor="specialty_id">Specialty</label>
-          <input
+          <select 
+            className="doc-sel-specs"
             id="specialty_id"
             name="specialty_id"
-            type="text"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.specialty_id}
-          />
-          {formik.touched.specialty_id && formik.errors.specialty_id ? (
+            value={formik.values.specialty_id || ''}
+            disabled={specialties.length === 0}
+          >
+            <option className="doc-specialty" value="">Select Specialty</option>
+            {specialties.length === 0 ? (
+              <option value="" disabled>No specialties available</option>
+            ) : (
+              specialties.map((specialty) => (
+                <option key={specialty.id} value={specialty.id}>
+                  {specialty.name}
+                </option>
+              ))
+            )}
+          </select>
+          {formik.touched.specialty_id && formik.errors.specialty_id && (
             <div>{formik.errors.specialty_id}</div>
-          ) : null}
-        </div>
+          )}
+        </div> */}
 
-        <button type="submit" disabled={isSubmitting}>
+        <button className='btn-form' type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Submit'}
         </button>
       </form>

@@ -641,7 +641,7 @@ input:focus {
   outline: none;
 }
 
-button {
+.btn-form {
   width: 100%;
   padding: 10px;
   background-color: #28a745;
@@ -660,6 +660,40 @@ button:disabled {
 
 button:hover:not(:disabled) {
   background-color: #218838;
+}
+
+.specialty {
+  color: #000;
+  width: 100%;
+  padding: 20px;
+}
+
+select.doc-sel-specs {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow-y: auto;
+  color: #333;
+  /* You can change this to suit your design */
+  background-color: #fff;
+  /* Make sure it's visible against the background */
+}
+
+select.doc-sel-specs:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+option {
+  padding: 8px;
+  background-color: #fff;
+  color: #333;
+}
+
+option:hover {
+  background-color: #f1f1f1;
 }
 
 .error {
