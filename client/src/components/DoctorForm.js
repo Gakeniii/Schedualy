@@ -39,6 +39,7 @@ const DoctorForm = () => {
         const result = await response.json();
 
         if (response.ok) {
+          alert('Doctor created successfully');
           navigate('/doctors'); // Redirect to doctor list after successful submission
         } else {
           console.error('Error creating doctor:', result.message);

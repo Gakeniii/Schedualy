@@ -25,9 +25,9 @@ const PatientDetail = () => {
         <p className="diagnosis-info"><strong>DIAGNOSIS:</strong> {patient.diagnosis}</p>
         <p className="patients-notes"><h3>Notes:</h3> {patient.notes}</p>
         <p className="observation-notes"><h3>Treatment Plan:</h3> {patient.treatment_plan}</p>
-        <p className="appointment-info-nxt">
+        {/* <p className="appointment-info-nxt">
           <strong>Next Appointment:</strong> {patient.appointment.date} at {patient.appointment.time}
-        </p>
+        </p> */}
 
         <button 
           className="edit-button"

@@ -1,8 +1,10 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const PatientForm = () => {
+  const navigate = useNavigate();
   const initialValues = {
     name: "",
     phone_no: "",
@@ -22,6 +24,7 @@ const PatientForm = () => {
       const response = await axios.post("/patients", values);
       alert("Patient created successfully!");
       resetForm();
+      navigate("/patients")
     } catch (error) {
       console.error("Error creating patient:", error);
       alert("Failed to create patient.");

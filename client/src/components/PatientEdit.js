@@ -26,7 +26,7 @@ const PatientEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/api/patients/${id}`, {
+    fetch(`/patients/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ const PatientEdit = () => {
       body: JSON.stringify(patient),
     })
     .then(response => response.json())
-    .then(() => navigate(`/patients/${id}`));  // Redirect to patient details page after update
+    .then(() => navigate(`/patients/${id}`));  
   };
 
   return (
