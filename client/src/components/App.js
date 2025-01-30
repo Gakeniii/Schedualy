@@ -15,6 +15,10 @@ import DoctorForm from "./DoctorForm";
 import DoctorsList from "./DoctorList";
 import DoctorDetail from "./DoctorDetail";
 import DoctorEdit from "./DoctorEdit";
+import PaymentEdit from "./PaymentEdit"
+import SpecialityForm from "./SpecialityForm"
+import SpecialityList from "./SpecialityList"
+import SpecialtyEdit from "./SpecialtyEdit"
 
 
 function App() {
@@ -27,6 +31,7 @@ function App() {
         <Route path="/patients/form" element={<PatientForm />} />
         <Route path="/patients" element={<PatientList/>} />
         <Route path="/patients/:id" element={<PatientDetail />} />
+        <Route path="/payment-options/edit/:id" element={<PaymentEdit />} />
         <Route path="/patients/:id/edit" element={<PatientEdit />} />
 
         <Route path="/appointments/form" element={<AppointmentForm />} />
@@ -38,6 +43,11 @@ function App() {
         <Route path="/doctors" element={<DoctorsList />} />
         <Route path="/doctors/:id" element={<DoctorDetail />} />
         <Route path="/doctors/edit/:id" element={<DoctorEdit />} />
+
+        <Route path="/specialties/form" element={<SpecialityForm />} />
+        <Route path="/specialties" element={<SpecialityList />} />
+        <Route path="/specialties/edit/:id" element={<SpecialtyEdit />} />
+
 
       </Routes>
       <br></br>

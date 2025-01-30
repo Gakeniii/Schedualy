@@ -6,13 +6,14 @@ import { useNavigate } from 'react-router-dom';
 const DoctorForm = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [specialties, setSpecialties] = useState([]);
 
   useEffect(() => {
     const fetchSpecialties = async () => {
       try {
         const response = await fetch('/specialties');
         const data = await response.json();
-        // setSpecialties(data);
+        setSpecialties(data);
         // console.log('Fetched specialties:', data);
       } catch (error) {
         console.error('Error fetching specialties:', error);
@@ -22,7 +23,7 @@ const DoctorForm = () => {
     fetchSpecialties();
   }, []);
 
-  // Formik setup
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -42,7 +43,6 @@ const DoctorForm = () => {
       console.log("doctors:", values);
       setIsSubmitting(true);
 
-      // Assuming you have an API to create a doctor
       try {
         const response = await fetch('/doctors', {
           method: 'POST',
@@ -63,7 +63,6 @@ const DoctorForm = () => {
       } catch (error) {
         console.error('Network error:', error);
       }
-
       setIsSubmitting(false);
     }
   });
@@ -132,16 +131,22 @@ const DoctorForm = () => {
           ) : null}
         </div>
         <div>
-          <label htmlFor="specialty_id">Specialty:</label>
-          <input
+          <label id='specialty_id' htmlFor="specialty_id">Specialty:</label>
+          <select
             id="specialty_id"
             name="specialty_id"
-            type="text"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.specialty_id}
-          />
-          {formik.touched.specialty_id && formik.errors.specialty_id ? (
+            >
+              <option value="" label='Select a specialty' />
+              {specialties.map((specialty) => (
+                <option key={specialty.id} value={specialty.id}>
+                  {specialty.specialty} ({specialty.doctor_count} doctors)
+                </option>
+              ))}
+            </select>
+            {formik.touched.specialty_id && formik.errors.specialty_id ? (
             <div>{formik.errors.specialty_id}</div>
           ) : null}
         </div>

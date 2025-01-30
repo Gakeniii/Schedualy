@@ -13,9 +13,14 @@ function Navbar() {
   return (
     <>
       <header id="navbar">
-        <h1 id="nav-header">Schedualy</h1>
+        <h1 id="nav-header">BrightCare</h1>
         <nav ref={navRef}>
           <div id="navbar-links">
+
+              <Link id='home-link' to="/" className={location.pathname === '/' ? 'active' : ''}>
+              Home
+              </Link>
+            
             <div className="dropdown">
               <button className="dropbtn">Patients</button>
               <div className="dropdown-content">
@@ -63,18 +68,7 @@ function Navbar() {
                 </Link>
               </div>
             </div>
-
-            <div className="dropdown">
-              <button className="dropbtn">Payments</button>
-              <div className="dropdown-content">
-                <Link to="/payment-options/form" className={location.pathname === '/payment-options/form' ? 'active' : ''}>
-                  Add Payment
-                </Link>
-                <Link to="/payment-options" className={location.pathname === '/payment-options' ? 'active' : ''}>
-                  Payments 
-                </Link>
-              </div>
-            </div>
+            
 
           </div>
 

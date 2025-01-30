@@ -9,11 +9,13 @@ const EditDoctor = () => {
     name: "",
     email: "",
     age: "",
-    phone_no: ""
+    phone_no: "",
+    specialty_id: "",
   });
 
+  const [specialties, setSpecialties] = useState([]);
+
   useEffect(() => {
-    
     fetch(`/doctors/${id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -22,10 +24,20 @@ const EditDoctor = () => {
           email: data.email,
           age: data.age,
           phone_no: data.phone_no,
+          specialty_id: data.specialty_id,
         });
       })
       .catch((error) => console.error("Error fetching doctor details:", error));
     }, [id])
+
+    useEffect(() => {
+      fetch(`/specialties`)
+        .then((res) => res.json())
+        .then((data) => {
+          setSpecialties(data);
+        })
+        .catch((error) => console.error('Error fetching specialties:', error));
+    }, [])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,6 +55,7 @@ const EditDoctor = () => {
       email: doctor.email,
       age: doctor.age,
       phone_no: doctor.phone_no,
+      specialty_id: doctor.specialty_id,
     };
 
     fetch(`/doctors/${id}`, {
@@ -62,9 +75,9 @@ const EditDoctor = () => {
   };
 
   return (
-    <div className="edit-doctor-container">
+    <div id="edit-doctor-container">
       <h2>Edit Doctor</h2>
-      <form onSubmit={handleSubmit}>
+      <form id='edit-form' onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
           <input
@@ -101,7 +114,22 @@ const EditDoctor = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Save Changes</button>
+        <div>
+          <label>Specialty:</label>
+          <select 
+            name="specialty_id"
+            value={doctor.specialty_id}
+            onChange={handleChange}
+          >
+            <option value="">Select a speciality</option>
+            {specialties.map((specialty) => (
+              <option key={specialty.id} value={specialty.id}>
+                {specialty.specialty}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button id="submit" type="submit">Save Changes</button>
       </form>
     </div>
   );

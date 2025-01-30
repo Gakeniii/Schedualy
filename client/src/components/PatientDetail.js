@@ -5,6 +5,7 @@ const PatientDetail = () => {
   const { id } = useParams(); 
   const [patient, setPatient] = useState(null);
   const [appointments, setAppointments] = useState([]);
+  const [payments, setPayments] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +18,12 @@ const PatientDetail = () => {
         if (data.appointments && data.appointments.length > 0) {
           setAppointments(data.appointments);
         }
-      });
+
+        if (data.payment_options && data.payment_options.length > 0) {
+          setPayments(data.payment_options)
+        }
+      })
+      .catch(error => console.error('Error fetching patients detaild:', error));
   }, [id]);
 
   const handleDelete = () => {
@@ -71,6 +77,22 @@ const PatientDetail = () => {
           </ul>
         ) : (
           <p>No appointments available</p>
+        )}
+
+        <h3 id='ppt-dets-pay-h3'>Payment Options:</h3>
+        {payments.length > 0 ? (
+          <ul>
+            {payments.map((payment, index) => (
+              <li key={index} id='payment-dets'>
+                <p><strong>Credit Card:</strong>{payment.credit_card ? 'Yes' : 'No'}</p>
+                <p><strong>Debit Card:</strong>{payment.debit_card ? 'Yes' : 'No'}</p>
+                <p><strong>Insurance:</strong>{payment.insurance ? 'Yes' : 'No'}</p>
+                <p><strong>Angel Donation:</strong>{payment.angel_donation ? 'Yes' : 'No'}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No payments details available</p>
         )}
 
         <div id='btn-details-container'>

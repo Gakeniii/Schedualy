@@ -35,7 +35,7 @@ const DoctorsList = () => {
         ) : (
           doctors.map((doctor) => (
             <div key={doctor.id} className="doctor-card">
-              <h3>{doctor.name}</h3>
+              <h3 id="he-doc-list">Dr.{doctor.name}</h3>
               <p>Email: {doctor.email}</p>
               <p>Age: {doctor.age}</p>
               <p>Phone: {doctor.phone_no}</p>
